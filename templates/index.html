@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imran's Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home">
+    <div class="home-wrapper">
+        <h1 class="logo">Imran's<span>Engine</span></h1>
+        <p class="tagline">A Search engine created by Imran - F23607042 for NLP Assignment</p>
+        <form action="/search" method="get" class="search-form">
+            <input type="text" name="q" autofocus autocomplete="off"
+                   placeholder="Search the indexed pages..." required>
+            <button type="submit">Search</button>
+        </form>
+        <p class="hint">
+            Tip: try boolean queries like
+            <code>python AND tutorial</code>,
+            <code>cat OR dog</code>,
+            <code>java NOT script</code>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ query }} - Imran's Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="results">
+    <header class="results-header">
+        <a href="/" class="logo small">Imran's<span>Engine</span></a>
+        <form action="/search" method="get" class="search-form small">
+            <input type="text" name="q" value="{{ query }}" autocomplete="off" required>
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <main class="results-main">
+        <p class="stats">
+            About {{ total }} result{{ '' if total == 1 else 's' }}
+            ({{ elapsed }} seconds)
+        </p>
+
+        {% if results %}
+            {% for r in results %}
+                <div class="result">
+                    <a href="{{ r.url }}" target="_blank" rel="noopener" class="result-url">
+                        {{ r.url }}
+                    </a>
+                    <a href="{{ r.url }}" target="_blank" rel="noopener" class="result-title">
+                        {{ r.title }}
+                    </a>
+                    <p class="result-snippet">{{ r.snippet | safe }}</p>
+                    <p class="result-score">Score: {{ r.score }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-results">
+                No results found for <strong>"{{ query }}"</strong>.
+                <br>Try different keywords or check your spelling.
+            </p>
+        {% endif %}
+    </main>
+</body>
+</html>
